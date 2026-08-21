@@ -1,15 +1,14 @@
-# Step 4: Water-use efficiency measure and irrigation demand classification
 import pandas as pd
 
 df = pd.read_csv("clean_data.csv")
 
-# water-use efficiency = liters of water per minute of pump runtime
+#water-use efficiency = liters of water per minute of pump runtime
 df["water_use_efficiency"] = df["water_use_liters"] / df["pump_runtime_min"]
 
 print("Water use efficiency:")
 print(df["water_use_efficiency"].describe())
 
-# classify irrigation demand from soil moisture and solar intensity
+#classify irrigation demand from soil moisture and solar intensity
 def get_demand(row):
     if row["soil_moisture_percent"] < 30 and row["solar_intensity_w_m2"] > 350:
         return "High"
